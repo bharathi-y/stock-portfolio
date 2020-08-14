@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block title %}
+    <title>STOCKS PORTFOLIO</title>
+    {% endblock %}
+    <link rel="stylesheet" href="{% static 'boot/bs.css' %}">
+    <style>
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
+</head>
+
+<body>
+{% block header %}
+<nav class="navbar navbar-expand-lg  navbar navbar-dark bg-dark">
+
+  <a class="navbar-brand" href="#"><img src="media/index.png" width="90" height="60" class="d-inline-block align-top" style="color: blue;">Stock</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link active" href="{% url 'transactions_urls:home' %} " style="color:white;">home</a>
+        <a class="nav-item nav-link active" href="#" style="color:white;" >Support</a>
+
+    </div>
+  </div>
+</nav>
+               <nav class="navbar navbar-expand-lg " style="background-color: #e3f2fd;">
+
+            {% if user.is_authenticated %}
+                 <div class="form-inline my-2 my-lg-0">
+                <a class="nav-item nav-link active " href="{% url 'accounts_urls:userlogoutpage' %}"><button class="btn btn-success" type="submit">Logout</button></a>
+
+                     <h6 style="color:blue;" style="font-size:160%;" > {{ user.username }}</h6>
+                 </div>
+                      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                      </button>
+                      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                        <div class="navbar-nav">
+                          <a class="nav-item nav-link active" href="#" class="btn btn-success" style="color:blue;">Stock Summary</a>
+                          <a class="nav-item na
+                          v-link active " href="{% url 'transactions_urls:buy'%}" class="btn btn-success" style="color:bl">Buy New Stocke </a>
+
+                        </div>
+                      </div>
+
+
+            {% else %}
+                <a class="nav-item nav-link active " href="{% url 'accounts_urls:userloginpage' %}"><button class="btn btn-success" type="submit">LogIn</button></a>
+
+                 <a class="nav-item nav-link active" href="{% url 'accounts_urls:userregistrationpage' %}"><button class="btn btn-success" type="submit">Signup</button></a>
+            {% endif %}
+               </nav>
+
+
+{% endblock %}
+
+
+
+{% block body %}
+
+
+<img src="media/body.png" width="1000" height="500"  class="center">
+
+
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
+
+</body>
+</html>

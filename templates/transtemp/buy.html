@@ -1,0 +1,17 @@
+{% extends "transtemp/base.html" %}
+{% load static %}
+{% block body %}
+<div class="container">
+
+   <div class="card">
+        <form method="post" class="form">
+            <table class="table">
+                 {% csrf_token %}
+                    {{ buystocks.as_p }}
+                     <button type="submit" class="btn btn-success">Buy Now</button>
+            </table>
+  </form>
+   </div>
+{% endblock %}
+
+

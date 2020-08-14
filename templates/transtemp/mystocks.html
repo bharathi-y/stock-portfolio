@@ -1,0 +1,46 @@
+{% extends 'transtemp/base.html' %}
+
+{% load static %}
+{% block body %}
+
+<div class="container">
+    <div class="alert aiert-info ">My Stocks</div>
+
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>sl no</th>
+            <th>Name</th>
+            <th>Date</th>
+            <th>Stock Name</th>
+            <th>Stock Quantity</th>
+            <th> Currency </th>
+            <th>Stock Price</th>
+            <th>Type</th>
+
+
+
+        </tr>
+        </thead>
+        <tbody>
+        {% for mystock in mystocks %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ mystock.user }}</td>
+            <td>{{ mystock.Date }}</td>
+            <td>{{ mystock.Stock }}</td>
+            <td>{{ mystock.TransactionUnit }}</td>
+            <td>{{ mystock.Currency }}</td>
+            <td>{{ mystock.TransactionPrice  }}</td>
+            <td><a href="{% url 'transactions_urls:buy'%}">Sell/Buy</a></td>
+
+
+
+        </tr>
+          {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+
+{% endblock %}
