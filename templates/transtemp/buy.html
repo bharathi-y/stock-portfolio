@@ -7,9 +7,10 @@
         <form method="post" class="form">
             <table class="table">
                  {% csrf_token %}
-                    {{ buystocks.as_p }}
-                     <button type="submit" class="btn btn-success">Buy Now</button>
+                    {{ buystocks.as_table }}
+
             </table>
+             <button type="submit" class="btn btn-success">Add Stock</button>
   </form>
    </div>
 {% endblock %}
