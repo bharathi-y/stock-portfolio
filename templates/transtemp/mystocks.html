@@ -33,16 +33,28 @@
         </tr>
         </thead>
         <tbody>
-        {% for mystock in mystocks %}
+        {% for object_list in objects_list %}
 
         <tr>
             <td>{{ forloop.counter }}</td>
-            <td>{{ mystock.date_of_transaction }}</td>
-            <td>{{ mystock.stock }}</td>
-            <td>{{ mystock.transaction_unit }}</td>
-            <td>{{ mystock.currency }}</td>
-            <td>{{ mystock.transaction_price_perunit  }}</td>
+            <td>{{ object_list.date_of_transaction }}</td>
+            <td>{{ object_list.stock }}</td>
+            <td>{{ object_list.transaction_unit }}</td>
+            <td>{{ object_list.currency }}</td>
+            <td>{{ object_list.transaction_price_per_unit  }}</td>
             <td><a href="{% url 'transactions_urls:buy'%}">Sell/Buy</a></td>
+            <td>{{ object_list.stock_previous_date }}</td>
+            <td>{{ object_list.stock_previous_unit }}</td>
+            <td>{{ object_list.stock_cumulative_unit }}</td>
+            <td>{{ object_list.stock_transacated_value }}</td>
+            <td>{{ object_list.stock_previous_cost }}</td>
+            <td>{{ object_list.cost_of_transaction }}</td>
+            <td>{{ object_list.cost_of_transaction_perunit }}</td>
+            <td>{{ object_list.stock_cumulative_cost }}</td>
+            <td>{{ object_list.gain_loss_from_sale }}</td>
+            <td>{{ object_list.yield_of_transactions }}</td>
+            <td>{{ object_list.cash_flow }}</td>
+
 
 
 

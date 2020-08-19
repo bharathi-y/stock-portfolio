@@ -26,10 +26,11 @@ class AllStock(models.Model):
 
 
 class MyTransactions(models.Model):
-    stock_name=models.OneToOneField(AllStock, help_text='User of the POST', on_delete=models.CASCADE,null=True)
+    stock_id=models.OneToOneField(AllStock, help_text='User of the POST', on_delete=models.CASCADE)
     stock_previous_date = models.DateField()
     stock_previous_unit=models.IntegerField()
     stock_cumulative_unit= models.IntegerField(help_text="number of stocks transacted")
+    stock_transacated_value= models.IntegerField(help_text="number of stocks transacted")
     stock_previous_cost=models.FloatField()
     cost_of_transaction=models.IntegerField()
     cost_of_transaction_perunit=models.IntegerField()
@@ -38,6 +39,6 @@ class MyTransactions(models.Model):
     yield_of_transactions=models.IntegerField()
     cash_flow=models.IntegerField()
     def __str__(self):
-        return "(0) - {1}".format(self.stock_name,self.stock_previous_date,self.stock_previous_unit,self.stock_cumulative_unit
-                                  ,self.stock_previous_cost,self.cost_of_transaction,self.cost_of_transaction_perunit,self.stock_cumulative_cost
+        return "(0) - {1}".format(self.stock_id,self.stock_previous_date,self.stock_previous_unit,self.stock_cumulative_unit
+                                  ,self.stock_transacated_value,self.stock_previous_cost,self.cost_of_transaction,self.cost_of_transaction_perunit,self.stock_cumulative_cost
                                    ,self.gain_loss_from_sale,self.yield_of_transactions,self.cash_flow)

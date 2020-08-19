@@ -8,6 +8,6 @@ class BuyForm(forms.ModelForm):
     class Meta:
         model = AllStock
         widgets={'date_of_transaction':DateInput()}
-        fields = ('stock','date_of_transaction','transaction_unit','currency','transaction_price_per_unit','type','fee')
+        fields = ('currency','date_of_transaction','stock','transaction_unit','transaction_price_per_unit','type','fee')
 
 

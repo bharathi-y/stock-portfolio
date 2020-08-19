@@ -3,38 +3,47 @@
 from django.shortcuts import render, redirect, HttpResponse
 from django.contrib import messages
 from .forms import BuyForm
+from itertools import chain
 from .models import AllStock,MyTransactions
 from django.core.exceptions import ObjectDoesNotExist
 
 
-def home(request):
+def base(request):
     return render(request, 'transtemp/base.html', context={})
 
 
 def transactions(request,pk=None):
-    date = AllStock.objects.get(pk=request.date)
-    if  MyTransactions.objects.filter(stock_name=request.stock,date=date).exists():
-        date = MyTransactions(request.date, date=date)
-    else:
-
-    date.save()
-
 
     if request.method == 'POST':
+
+        obj=AllStock.objects.filter(stock=request.POST.get("stock")).order_by("-id").first()
+        obj1=MyTransactions.objects.filter(stock_id=obj.id)
+
+        print(obj.id,obj.stock,obj.date_of_transaction)
         buystocks = BuyForm(request.POST)
         if buystocks.is_valid():
-            buystocks.save(commit=False)
+            obj2=buystocks.save(commit=False)
+            obj1.stock_previous_date=obj.date_of_transaction
+            obj1.transaction_unit=obj.stock_previous_unit
+            obj1.p
+
+
+            obj2.save()
 
             return redirect('transactions_urls:my_stocks')
 
     else:
         buystocks = BuyForm()
-        return render(request, 'transtemp/buy.html', context={'buystocks': buystocks})
+        return render(request, 'transtemp/buysellstock.html', context={'buystocks': buystocks})
 
 
 def my_stocks(request):
-    mystocks = AllStock.objects.all()
-    return render(request, 'transtemp/mystocks.html', context={'mystocks': mystocks, })
+
+    object_list=MyTransactions.objects.all().select_related('stock')
+
+
+
+    return render(request, 'transtemp/mystocks.html', context={'object_lits': object_list })
 
 
 #
