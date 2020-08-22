@@ -8,29 +8,26 @@
 
 
         {% csrf_token %}
-        <tr>
-            <td>Date={{ buystocks.stock_buy_transacted_date }}</td>
-            <td>Currency={{ stockform.currency }}</td>
-        </tr>
+        {{stockform}}
+       {{ buystocks }}
+<!--        <tr>-->
+<!--            <td>Date={{ buystocks.stock_buy_transacted_date }}</td>-->
+<!--            <td>Currency={{ stockform.currency }}</td>-->
+<!--        </tr>-->
 
-        <tr>
-            <td>Stock Name={{ stockform.stock_name }}</td>
-            <td>Stock Units={{ buystocks.stock_buy_units }}</td>
-        </tr>
+<!--        <tr>-->
+<!--            <td>Stock Name={{ stockform.stock_name }}</td>-->
+<!--            <td>Stock Units={{ buystocks.stock_buy_units }}</td>-->
+<!--        </tr>-->
 
-        <tr>
-            <td>Strock Price(Per Unit)={{ buystocks.stock_price_per_unit }}</td>
-            <td>Fee={{ buystocks.fee }}</td>
-        </tr>
-
-        <button type="submit" class="btn btn-success">Add Stock</button>
-    </form>
-
-    <form method="get" class="form">
+<!--        <tr>-->
+<!--            <td>Strock Price(Per Unit)={{ buystocks.stock_price_per_unit }}</td>-->
+<!--            <td>Fee={{ buystocks.fee }}</td>-->
+<!--        </tr>-->
 
         <button type="submit" class="btn btn-success">Update</button>
-
     </form>
+
 
 
 </div>

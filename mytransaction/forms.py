@@ -5,18 +5,18 @@ from .models import SellStockTransactiontable, BuyStockTransactiontable,AllStock
 class DateInput(forms.DateInput):
     input_type = 'date'
 
-class StockForm(forms.ModelForm):
+class AllStockForm(forms.ModelForm):
     class Meta:
         model=AllStocks
-        fields=("stock_name","currency")
+        fields=('stock_name','currency')
 
 class BuyForm(forms.ModelForm):
     class Meta:
         model = BuyStockTransactiontable
         widgets = {'stock_buy_transacted_date': DateInput()}
-        fields = ( "stock_buy_transacted_date",
-                  "stock_buy_units", "stock_price_per_unit",
-                  "fee")
+        fields = ( 'stock_buy_transacted_date',
+                  'stock_buy_units', 'stock_price_per_unit',
+                  'fee')
 
 
 class SellForm(forms.ModelForm):

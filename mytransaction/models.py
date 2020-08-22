@@ -7,7 +7,7 @@ class AllStocks(models.Model):
                    ("USD", "United States Dollar"),
                    ("INR", "Indian Rupee"))
     stock_name=models.CharField(max_length=200,unique=True)
-    currency=models.CharField(max_length=3, choices=curr_choice, help_text="choice the currenct ")
+    currency=models.CharField(max_length=120, choices=curr_choice, help_text="choice the currenct ")
     def __str__(self):
         return "(0) – {1}".format(self.stock_name, self.currency)
 
