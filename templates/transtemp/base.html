@@ -22,7 +22,7 @@ img {
 {% block header %}
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" href="{% url 'transactions_urls:base'%}">
         <img src="media/logo.png" width="200" height="60" class="d-inline-block align-top" alt="" loading="lazy">
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -33,13 +33,11 @@ img {
 
          <a class="nav-item nav-link active "href="{% url 'transactions_urls:base'%}"><button type="button" class="btn btn-secondary btn-lg" class="nav-link">Home</button></a>
 
+         <a class="nav-item nav-link active " href="{% url 'transactions_urls:buy'%}"><button type="button" class="btn btn-secondary btn-lg" class="nav-link">Buy Stock</button> </a>
 
-                 <a class="nav-item nav-link active " href="{% url 'transactions_urls:buy'%}"><button type="button" class="btn btn-secondary btn-lg" class="nav-link">Buy Stock</button> </a>
+         <a class="nav-item nav-link active " href="{% url 'transactions_urls:buy'%}"><button type="button" class="btn btn-secondary btn-lg" class="nav-link">Sell Stock</button> </a>
 
-       <a class="nav-item nav-link active " href="{% url 'transactions_urls:buy'%}"><button type="button" class="btn btn-secondary btn-lg" class="nav-link">Sell Stock</button> </a>
-
-
-                 <a class="nav-item nav-link active " href=""><button type="button" class="btn btn-secondary btn-lg" class="nav-link">Edit Stock</button> </a>
+         <a class="nav-item nav-link active " href=""><button type="button" class="btn btn-secondary btn-lg" class="nav-link">Edit Stock</button> </a>
 
         </ul>
     </div></nav>
