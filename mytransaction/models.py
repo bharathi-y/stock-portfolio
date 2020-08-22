@@ -32,7 +32,6 @@ class StockSummary(models.Model):
 
 
 class BuyStockTransactiontable(models.Model):
-
     stock_buy_transacted_date = models.DateField()
     currency = models.CharField(max_length=200)
     stock_name =  models.ForeignKey(AllStocks,help_text='User of the POST' , on_delete=models.CASCADE)
