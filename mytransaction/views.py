@@ -10,7 +10,7 @@ def base(request):
 
 #
 #
-def buytransactions(request, pk=None):
+def buy_transactions(request, pk=None):
     all_stock_form = AllStockForm()
     buy_stock_form = BuyForm()
     if request.method == 'POST':
