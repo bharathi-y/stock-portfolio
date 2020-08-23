@@ -7,10 +7,8 @@ app_name = 'mytransactions'
 #
 #
 urlpatterns = [
-    path('buy', views.buytransactions, name='buy'),
+    path('buy', views.buy_transactions, name='buy'),
     # path('sell', views.selltransactions, name='sell'),
     # path('base',views.base1,name='base'),
     path('', views.base, name='base'),
-    #
-    #
 ]
