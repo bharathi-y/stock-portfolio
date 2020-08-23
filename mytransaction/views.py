@@ -23,7 +23,23 @@ def buytransactions(request, pk=None):
         buy_stock_form = BuyForm(request.POST)
         if buy_stock_form.is_valid():
             buy_stock = buy_stock_form.save(commit=False)
-            all_obj, created = AllStocks.objects.get_or_create(stock_name=stock, currency=currency)
+            is_exists_allstock= AllStocks.objects.get(stock_name=stock, currency=currency).exists()
+            if not is_exists_allstock():
+                if all_stock_form.is_valid():
+                    all_stock = all_stock_form.save(commit=False)
+                    all_stock.save()
+                    all_obj = AllStocks.objects.get(stock_name=stock, currency=currency)
+                    buy_stock.stock_name = all_obj
+                    buy_stock.currency = currency
+                    buy_stock.stock_total_cost = unit * cost + fee
+                    buy_stock.save()
+            else:
+                all_obj = AllStocks.objects.get(stock_name=stock, currency=currency)
+                buy_stock.stock_name = all_obj
+                buy_stock.currency = currency
+                buy_stock.stock_total_cost = unit * cost + fee
+                buy_stock.save()
+
             is_stock_exists = StockSummary.objects.filter(stock_name=all_obj).exists()
 
             if not is_stock_exists:
@@ -31,19 +47,10 @@ def buytransactions(request, pk=None):
                     stock_name=all_obj, currency=currency, total_stock_holding_units=unit,
                     total_stock_holding_cost=unit * cost + fee
                 )
-                buy_stock.stock_name = all_obj
-                buy_stock.currency = currency
-                buy_stock.stock_total_cost = unit * cost + fee
-            elif all_stock_form.is_valid():
+                stock_summary.save()
+            else :
                 stock_summary = StockSummary.objects.get(stock_name=all_obj)
                 stock_summary.total_stock_holding_units += unit
                 stock_summary.total_stock_holding_cost += unit * cost + fee
                 stock_summary.save()
-                # insert records into buy table
-                buy_stock.stock_name = all_obj
-                buy_stock.currency = currency
-                buy_stock.stock_total_cost = unit * cost + fee
-                all_stock_form.save()
-            stock_summary.save()
-            buy_stock.save()
     return render(request, 'transtemp/buy.html', context={'buystocks': buy_stock_form, 'stockform': all_stock_form})
