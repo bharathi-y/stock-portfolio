@@ -1,5 +1,5 @@
 from django import forms
-from .models import SellStockTransactiontable, BuyStockTransactiontable,AllStocks
+from .models import SellStock, BuyStock,AllStocks
 
 
 class DateInput(forms.DateInput):
@@ -12,7 +12,7 @@ class AllStockForm(forms.ModelForm):
 
 class BuyForm(forms.ModelForm):
     class Meta:
-        model = BuyStockTransactiontable
+        model = BuyStock
         widgets = {'stock_buy_transacted_date': DateInput()}
         fields = ( 'stock_buy_transacted_date',
                   'stock_buy_units', 'stock_price_per_unit',
@@ -21,7 +21,7 @@ class BuyForm(forms.ModelForm):
 
 class SellForm(forms.ModelForm):
     class Meta:
-        model = SellStockTransactiontable
+        model = SellStock
         widgets = {'stock_sell_transacted_date': DateInput()}
         fields = ("stock_sell_transacted_date", "stock_sell_units"
                   , "stock_price_per_unit", "fee")

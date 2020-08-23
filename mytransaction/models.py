@@ -31,14 +31,14 @@ class StockSummary(models.Model):
                                   , self.total_gain_loss, self.last_transacted_date)
 
 
-class BuyStockTransactiontable(models.Model):
+class BuyStock(models.Model):
     stock_buy_transacted_date = models.DateField()
     currency = models.CharField(max_length=200)
-    stock_name =  models.ForeignKey(AllStocks,help_text='User of the POST' , on_delete=models.CASCADE)
+    stock_name = models.ForeignKey(AllStocks,help_text='User of the POST' , on_delete=models.CASCADE)
     stock_buy_units = models.IntegerField(help_text="number of stocks transacted")
     stock_price_per_unit = models.FloatField(help_text="price per unit")
     fee = models.FloatField(help_text="Fee Payed ")
-    stock_total_cost = models.FloatField()
+    stock_total_cost = models.FloatField(default=0)
     last_transacted_date = models.DateField(auto_now_add=True)
 
     def __str__(self):
@@ -47,18 +47,18 @@ class BuyStockTransactiontable(models.Model):
                                   self.fee, self.stock_total_cost, self.last_transacted_date)
 
 
-class SellStockTransactiontable(models.Model):
+class SellStock(models.Model):
     stock_sell_transacted_date = models.DateField()
     currency = models.CharField(max_length=200)
     stock_name = models.ForeignKey(AllStocks,help_text='User of the POST' , on_delete=models.CASCADE)
     stock_sell_units = models.IntegerField(help_text="number of stocks transacted")
     stock_price_per_unit = models.FloatField(help_text="price per unit")
     fee = models.FloatField(help_text="Fee Payed ")
-    stock_total_cost = models.FloatField()
-    stock_transaction_cost = models.FloatField()
-    stock_transaction_cost_per_unit = models.IntegerField()
-    gain_loss_from_sell = models.FloatField()
-    yield_of_transaction = models.FloatField()
+    stock_total_cost = models.FloatField(default=0)
+    stock_transaction_cost = models.FloatField(default=0)
+    stock_transaction_cost_per_unit = models.IntegerField(default=0)
+    gain_loss_from_sell = models.FloatField(default=0)
+    yield_of_transaction = models.FloatField(default=0)
     last_transacted_date = models.DateField(auto_now_add=True)
 
     def __str__(self):

@@ -1,5 +1,5 @@
 from django.shortcuts import render, HttpResponse
-from .models import SellStockTransactiontable, BuyStockTransactiontable, StockSummary, AllStocks
+from .models import SellStock, BuyStock, StockSummary, AllStocks
 from .forms import AllStockForm, BuyForm, SellForm
 
 
