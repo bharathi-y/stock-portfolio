@@ -2,10 +2,7 @@
 
 {% block body %}
 <div class="container">
-
-
     <form method="post" class="form">
-
 
         {% csrf_token %}
         {{stockform}}
@@ -24,7 +21,7 @@
 <!--            <td>Strock Price(Per Unit)={{ buystocks.stock_price_per_unit }}</td>-->
 <!--            <td>Fee={{ buystocks.fee }}</td>-->
 <!--        </tr>-->
-
+        <button id="buySubmitBtn" type="button" class="btn btn-success buy-submit-btn">Submit</button>
         <button type="submit" class="btn btn-success">Update</button>
     </form>
 

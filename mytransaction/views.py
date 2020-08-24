@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from mytransaction.models import StockSummary, AllStocks
 from mytransaction.forms import AllStockForm, BuyForm
+from django.http import JsonResponse
 
 
 # Create your views here.
@@ -44,3 +45,18 @@ def buy_transactions(request):
             stock_summary.save()
             buy_stock.save()
     return render(request, 'transtemp/buy.html', context={'buystocks': buy_stock_form, 'stockform': all_stock_form})
+
+
+def get_buy_cost_and_unit(request):
+    if request.method == 'GET':
+        print(f"request  {request.GET}")
+        stock = request.GET.get("stock_name")
+        currency = request.GET.get("currency")
+        is_stock_exists = AllStocks.objects.filter(stock_name=stock, currency=currency).exists()
+        resp = {"unit": 0, "cost": 0.0}
+        if is_stock_exists:
+            stock = AllStocks.objects.get(stock_name=stock, currency=currency)
+            stock_summary = StockSummary.objects.get(stock_name=stock)
+            print(stock_summary)
+            resp = {"unit": stock_summary.total_stock_holding_units, "cost": stock_summary.total_stock_holding_cost}
+        return JsonResponse(resp)
