@@ -1,0 +1,37 @@
+{% extends "transtemp/base.html" %}
+{% load crispy_forms_tags %}
+{% block body %}
+<div class="container">
+
+    <form action="" method="post" class="form">
+        <div class="tabel">
+            {% csrf_token %}
+            <table class="table table-borderless table-condensed ">
+                <tbody>
+
+                <tr>
+                    <td>Currency = {{ stockform.currency|crisp }}</td>
+                    <td>Stock Name ={{ stockform.stock_name |crisp }}</td>
+                </tr>
+
+
+                <tr>
+                    <td>Date = {{ buystocks.stock_buy_transacted_date|crisp }}</td>
+                    <td>Stock Units = {{ buystocks.stock_buy_units|crisp }}</td>
+                </tr>
+
+
+                <tr>
+                    <td>Strock Price(Per Unit) = {{ buystocks.stock_price_per_unit|crisp }}</td>
+                    -
+                    <td>Fee = {{ buystocks.fee |crisp }}</td>
+                </tr>
+
+                </tbody>
+            </table>
+            <button type="submit" class="btn btn-success">Update</button>
+        </div>
+    </form>
+</div>
+</form>
+{% endblock %}

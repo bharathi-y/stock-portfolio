@@ -20,12 +20,8 @@ from django.urls.conf import include
 from django.conf.urls.static import static
 from django.conf import settings
 
-
-
-
 urlpatterns = [
-     path('admin/', admin.site.urls),
-     path('',include('mytransaction.urls',namespace='transactions_urls'),),
-    # path('',include('accounts.urls',namespace='accounts_urls'),),
-
-]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+                  path('admin/', admin.site.urls),
+                  path('', include('mytransaction.urls', namespace='transactions_urls'), ),
+                  # path('',include('accounts.urls',namespace='accounts_urls'),),
+              ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

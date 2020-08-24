@@ -1,15 +1,19 @@
 from django.db import models
 import datetime
 
+
 class AllStocks(models.Model):
-    curr_choice = (("SGD", "Singapore dollar"),
+    curr_choice = (("", "Select Currency"),
+                   ("SGD", "Singapore dollar"),
                    ("HKD", "Hong Kong dollar"),
                    ("USD", "United States Dollar"),
                    ("INR", "Indian Rupee"))
-    stock_name=models.CharField(max_length=200,unique=True)
-    currency=models.CharField(max_length=120, choices=curr_choice, help_text="choice the currenct ")
+    stock_name = models.CharField(max_length=200, unique=True)
+    currency = models.CharField(max_length=120, choices=curr_choice, help_text="Select Currency ")
+
     def __str__(self):
         return "(0) – {1}".format(self.stock_name, self.currency)
+
 
 # Create your models here.
 class StockSummary(models.Model):
@@ -34,7 +38,7 @@ class StockSummary(models.Model):
 class BuyStock(models.Model):
     stock_buy_transacted_date = models.DateField()
     currency = models.CharField(max_length=200)
-    stock_name = models.ForeignKey(AllStocks,help_text='User of the POST' , on_delete=models.CASCADE)
+    stock_name = models.ForeignKey(AllStocks, help_text='User of the POST', on_delete=models.CASCADE)
     stock_buy_units = models.IntegerField(help_text="number of stocks transacted")
     stock_price_per_unit = models.FloatField(help_text="price per unit")
     fee = models.FloatField(help_text="Fee Payed ")
@@ -50,7 +54,7 @@ class BuyStock(models.Model):
 class SellStock(models.Model):
     stock_sell_transacted_date = models.DateField()
     currency = models.CharField(max_length=200)
-    stock_name = models.ForeignKey(AllStocks,help_text='User of the POST' , on_delete=models.CASCADE)
+    stock_name = models.ForeignKey(AllStocks, help_text='User of the POST', on_delete=models.CASCADE)
     stock_sell_units = models.IntegerField(help_text="number of stocks transacted")
     stock_price_per_unit = models.FloatField(help_text="price per unit")
     fee = models.FloatField(help_text="Fee Payed ")
@@ -68,6 +72,5 @@ class SellStock(models.Model):
                                   , self.gain_loss_from_sell
                                   , self.yield_of_transaction
                                   , self.last_transacted_date)
-
 
 # Create your models here.

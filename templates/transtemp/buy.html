@@ -1,32 +1,66 @@
 {% extends "transtemp/base.html" %}
+{% load crispy_forms_tags %}
 
 {% block body %}
+
 <div class="container">
-    <form method="post" class="form">
 
-        {% csrf_token %}
-        {{stockform}}
-       {{ buystocks }}
-<!--        <tr>-->
-<!--            <td>Date={{ buystocks.stock_buy_transacted_date }}</td>-->
-<!--            <td>Currency={{ stockform.currency }}</td>-->
-<!--        </tr>-->
+    <form action="" method="post" class="form">
+        <!--        <label for=currency >Your name: </label>-->
+        <!--         <input id="your_name" type="text" name="your_name" value="{{ currency }}">-->
+        <!--        <label for="currency" >Currency:</label>-->
+        <!--        <select  name="currency" id="currency" value={{ currency }} class="form-control"></select>-->
+        <!--        <label for="stockname" >Stock Name </label>-->
+        <!--        <input type="text" name="stock_name" id="stockname" class="form-control">-->
+        <!--        <label for="date" >Date </label>-->
+        <!--        <input type="date" name="stock_buy_transacted_date" id="date" class="form-control">-->
+        <!--        <label for="stockunits" >Stock Units</label>-->
+        <!--        <input type="number" name="stock_buy_units" id="stockunits" class="form-control">-->
+        <!--        <label for="stockpriceperunits" >Strock Price(Per Unit)</label>-->
+        <!--&lt;!&ndash;        <input type="number" name="stock_price_per_unit" id="stockpriceperunits" class="form-control">&ndash;&gt;-->
+        <!--       <label for="Fee" >Fee </label>&ndash;&gt;-->
+        <!--        <input type="number" name="fee" id="Fee" class="form-control">&ndash;&gt;-->
 
-<!--        <tr>-->
-<!--            <td>Stock Name={{ stockform.stock_name }}</td>-->
-<!--            <td>Stock Units={{ buystocks.stock_buy_units }}</td>-->
-<!--        </tr>-->
+        <div class="tabel">
+            {% csrf_token %}
+            <table class="table table-borderless table-condensed ">
+                <tbody>
 
-<!--        <tr>-->
-<!--            <td>Strock Price(Per Unit)={{ buystocks.stock_price_per_unit }}</td>-->
-<!--            <td>Fee={{ buystocks.fee }}</td>-->
-<!--        </tr>-->
-        <button id="buySubmitBtn" type="button" class="btn btn-success buy-submit-btn">Submit</button>
-        <button type="submit" class="btn btn-success">Update</button>
+                <tr>
+                    <td>Currency:  {{ stockform.currency }}</td>
+                    <td>Stock Name:  {{ stockform.stock_name }}</td>
+                </tr>
+
+                <tr>
+                    <td>Date: {{ buystocks.stock_buy_transacted_date }}</td>
+                    <td>Stock Units: {{ buystocks.stock_buy_units }}</td>
+                </tr>
+
+                <tr>
+                    <td>Strock price (Per Unit): {{ buystocks.stock_price_per_unit }}</td>
+
+                    <td>Fee: {{ buystocks.fee }}</td>
+                </tr>
+
+                </tbody>
+            </table>
+            <button type="button" class="btn btn-success buy-submit-btn">Submit</button>
+        </div>
+        <table class="table table-borderless table-condensed ">
+            <thead>
+            <tr>
+                <th>current stock holding units:</th>
+                <th>current stock holding cost:</th>
+
+            </tr>
+            <tbody>
+            <tr>
+                <td id="buyUnits"></td>
+                <td id="buyCost"></td>
+            </tr>
+            </tbody>
+        </table>
+        <button type="submit" class="btn btn-success">Save</button>
     </form>
-
-
-
 </div>
-
 {% endblock %}
