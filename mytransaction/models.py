@@ -2,12 +2,13 @@ from django.db import models
 import datetime
 
 class AllStocks(models.Model):
-    curr_choice = (("SGD", "Singapore dollar"),
+    curr_choice = (("","Select Currency"),
+                    ("SGD", "Singapore dollar"),
                    ("HKD", "Hong Kong dollar"),
                    ("USD", "United States Dollar"),
                    ("INR", "Indian Rupee"))
     stock_name=models.CharField(max_length=200,unique=True)
-    currency=models.CharField(max_length=120, choices=curr_choice, help_text="choice the currenct ")
+    currency=models.CharField(max_length=120, choices=curr_choice, help_text="Select Currency ")
     def __str__(self):
         return "(0) – {1}".format(self.stock_name, self.currency)
 

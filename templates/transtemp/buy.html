@@ -1,63 +1,76 @@
 {% extends "transtemp/base.html" %}
+{% load crispy_forms_tags %}
 
 {% block body %}
+
 <div class="container">
 
-<form method="post" class="form">
+    <form action="" method="post" class="form">
+        <!--        <label for=currency >Your name: </label>-->
+        <!--         <input id="your_name" type="text" name="your_name" value="{{ currency }}">-->
+        <!--        <label for="currency" >Currency:</label>-->
+        <!--        <select  name="currency" id="currency" value={{ currency }} class="form-control"></select>-->
+        <!--        <label for="stockname" >Stock Name </label>-->
+        <!--        <input type="text" name="stock_name" id="stockname" class="form-control">-->
+        <!--        <label for="date" >Date </label>-->
+        <!--        <input type="date" name="stock_buy_transacted_date" id="date" class="form-control">-->
+        <!--        <label for="stockunits" >Stock Units</label>-->
+        <!--        <input type="number" name="stock_buy_units" id="stockunits" class="form-control">-->
+        <!--        <label for="stockpriceperunits" >Strock Price(Per Unit)</label>-->
+        <!--&lt;!&ndash;        <input type="number" name="stock_price_per_unit" id="stockpriceperunits" class="form-control">&ndash;&gt;-->
+        <!--       <label for="Fee" >Fee </label>&ndash;&gt;-->
+        <!--        <input type="number" name="fee" id="Fee" class="form-control">&ndash;&gt;-->
+
+        <div class="tabel">
+            {% csrf_token %}
+            <table class="table table-borderless table-condensed ">
+                <tbody>
+
+                <tr>
+                    <td>Currency = {{ stockform.currency }}</td>
+                    <td>Stock Name ={{ stockform.stock_name }}</td>
+                </tr>
 
 
-    {% csrf_token %}
-    {{stockform}}
-    {{ buystocks }}
-    <!--        <tr>-->
-    <!--            <td>Date={{ buystocks.stock_buy_transacted_date }}</td>-->
-    <!--            <td>Currency={{ stockform.currency }}</td>-->
-    <!--        </tr>-->
+                <tr>
+                    <td>Date = {{ buystocks.stock_buy_transacted_date }}</td>
+                    <td>Stock Units = {{ buystocks.stock_buy_units }}</td>
+                </tr>
 
-    <!--        <tr>-->
-    <!--            <td>Stock Name={{ stockform.stock_name }}</td>-->
-    <!--            <td>Stock Units={{ buystocks.stock_buy_units }}</td>-->
-    <!--        </tr>-->
 
-    <!--        <tr>-->
-    <!--            <td>Strock Price(Per Unit)={{ buystocks.stock_price_per_unit }}</td>-->
-    <!--            <td>Fee={{ buystocks.fee }}</td>-->
-    <!--        </tr>-->
+                <tr>
+                    <td>Strock Price(Per Unit) = {{ buystocks.stock_price_per_unit }}</td>
+                    -
+                    <td>Fee = {{ buystocks.fee }}</td>
+                </tr>
 
-    <button type="submit" class="btn btn-success">Update</button>
-</form>
+                </tbody>
+            </table>
+            <button type="submit" class="btn btn-success">Update</button>
+        </div>
+    </form>
 </div>
-
-<form>
-    <div class="container">
-        <div class="alert aiert-info ">Caliculate Your Stock</div>
-
-        <table class="table ">
-            <thead>
-            <tr>
-                <th> Current Holding Units</th>
-
-                <th>Current Holding Price</th>
-
-            </tr>
-            </thead>
-            <tbody>
-<!--            {% for stock_summ in stock_summary %}-->
-<!--            <td>{{ stock_summ.total_stock_holding_units}}</td>-->
-<!--            <td>{{ stock_summ.total_stock_holding_cost }}</td>-->
-
-            <tr>
-
-
-            </tr>
-<!--            {% endfor %}-->
-            </tbody>
-        </table>
-
-    </div>
-
-
-    </div>
 </form>
+<div class="tabel">
+    {% csrf_token %}
+    <table class="table table-borderless table-condensed ">
+        <thead>
+        <tr>
+            <th>current stock holding units:</th>
+            <th>current stock holding cost:</th>
 
+        </tr>
+        <tbody>
+        {% for stock_sum in stock_summary %}
+        <tr>
+            <td> {{ stock_sum.total_stock_holding_units}}</td>
+            <td> {{ stock_sum.total_stock_holding_cost}}</td>
+
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <button type="submit" class="btn btn-success">save data</button>
+    </form>
+</div>
 {% endblock %}

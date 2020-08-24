@@ -1,0 +1,27 @@
+{% extends "transtemp/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block body %}
+
+<div class="tabel">
+
+    <table class="table table-borderless table-condensed ">
+        <thead>
+        <tr>
+            <th>current stock holding units:</th>
+
+        </tr>
+        <tbody>
+        {% for stock_sum in stock_summary %}
+        <tr>
+            <td> {{ stock_sum.total_stock_holding_units}}</td>
+
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <button type="submit" class="btn btn-success">save data</button>
+    </form>
+</div>
+
+{% endblock %}
